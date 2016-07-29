@@ -47,7 +47,6 @@ function world() {
 	var seconds = now.getSeconds();
 
 	clock.update(hours,minutes,seconds).draw();
-
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -55,6 +54,11 @@ function world() {
 function degToRad(degree) {
 	var factor = Math.PI / 180;
 	return degree * factor;
+}
+
+function toBinary(num) {
+	if (num <= 0) return "";
+	return "" + toBinary(Math.floor(num/2)) + "" + (num%2);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -71,6 +75,33 @@ function Clock() {
 	this.s1 = new Cell(this.x+400,this.y,100);
 	this.s2 = new Cell(this.x+500,this.y,100);
 
+	this.h1_bin = new Cell(this.x+19.8*0,this.y+110,25);
+	this.h2_bin = new Cell(this.x+19.8*1,this.y+110,25);
+	this.h3_bin = new Cell(this.x+19.8*2,this.y+110,25);
+	this.h4_bin = new Cell(this.x+19.8*3,this.y+110,25);
+	this.h5_bin = new Cell(this.x+19.8*5,this.y+110,25);
+	this.h6_bin = new Cell(this.x+19.8*6,this.y+110,25);
+	this.h7_bin = new Cell(this.x+19.8*7,this.y+110,25);
+	this.h8_bin = new Cell(this.x+19.8*8,this.y+110,25);
+
+	this.m1_bin = new Cell(this.x+19.8*10,this.y+110,25);
+	this.m2_bin = new Cell(this.x+19.8*11,this.y+110,25);
+	this.m3_bin = new Cell(this.x+19.8*12,this.y+110,25);
+	this.m4_bin = new Cell(this.x+19.8*13,this.y+110,25);
+	this.m5_bin = new Cell(this.x+19.8*15,this.y+110,25);
+	this.m6_bin = new Cell(this.x+19.8*16,this.y+110,25);
+	this.m7_bin = new Cell(this.x+19.8*17,this.y+110,25);
+	this.m8_bin = new Cell(this.x+19.8*18,this.y+110,25);
+
+	this.s1_bin = new Cell(this.x+19.8*20,this.y+110,25);
+	this.s2_bin = new Cell(this.x+19.8*21,this.y+110,25);
+	this.s3_bin = new Cell(this.x+19.8*22,this.y+110,25);
+	this.s4_bin = new Cell(this.x+19.8*23,this.y+110,25);
+	this.s5_bin = new Cell(this.x+19.8*25,this.y+110,25);
+	this.s6_bin = new Cell(this.x+19.8*26,this.y+110,25);
+	this.s7_bin = new Cell(this.x+19.8*27,this.y+110,25);
+	this.s8_bin = new Cell(this.x+19.8*28,this.y+110,25);
+
 	this.update = function(h,m,s) {
 		(this.h1).currentNumber = Math.floor(h/10)%10;
 		(this.h2).currentNumber = h%10;
@@ -78,6 +109,20 @@ function Clock() {
 		(this.m2).currentNumber = m%10;
 		(this.s1).currentNumber = Math.floor(s/10)%10;
 		(this.s2).currentNumber = s%10;
+
+		// (this.h1_bin).currentNumber = 
+		// 	Math.floor(parseInt(toBinary(Math.floor(h/10)%10))/1000);
+		// (this.h2_bin).currentNumber = 
+		// 	Math.floor(parseInt(toBinary(Math.floor(h/10)%10))/100);
+		// (this.h3_bin).currentNumber = 
+		// 	Math.floor(parseInt(toBinary(Math.floor(h/10)%10))/10);
+		// (this.h4_bin).currentNumber = 
+		// 	Math.floor(parseInt(toBinary(Math.floor(h/10)%10))/1);
+
+		// (this.h5_bin).currentNumber = Math.floor(parseInt(toBinary(h%10))/1000);
+		// (this.h6_bin).currentNumber = Math.floor;
+
+
 		return this;
 	}
 
@@ -88,6 +133,33 @@ function Clock() {
 		(this.m2).update().draw();
 		(this.s1).update().draw();
 		(this.s2).update().draw();
+
+		(this.h1_bin).update().draw();
+		(this.h2_bin).update().draw();
+		(this.h3_bin).update().draw();
+		(this.h4_bin).update().draw();
+		(this.h5_bin).update().draw();
+		(this.h6_bin).update().draw();
+		(this.h7_bin).update().draw();
+		(this.h8_bin).update().draw();
+
+		(this.m1_bin).update().draw();
+		(this.m2_bin).update().draw();
+		(this.m3_bin).update().draw();
+		(this.m4_bin).update().draw();
+		(this.m5_bin).update().draw();
+		(this.m6_bin).update().draw();
+		(this.m7_bin).update().draw();
+		(this.m8_bin).update().draw();
+
+		(this.s1_bin).update().draw();
+		(this.s2_bin).update().draw();
+		(this.s3_bin).update().draw();
+		(this.s4_bin).update().draw();
+		(this.s5_bin).update().draw();
+		(this.s6_bin).update().draw();
+		(this.s7_bin).update().draw();
+		(this.s8_bin).update().draw();
 	}
 }
 
@@ -134,7 +206,7 @@ function Line(x1,y1,x2,y2) {
 	this.draw = function() {
 		if (this.isActive) {
 			context.strokeStyle = "red";
-			context.lineWidth = 5;
+			context.lineWidth = 1;
 			context.lineCap = "round";
 			context.beginPath();
 			context.moveTo(x1,y1);
